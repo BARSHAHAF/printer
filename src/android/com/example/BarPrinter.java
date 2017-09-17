@@ -30,7 +30,7 @@ public class BarPrinter extends CordovaPlugin {
       String phrase = args.getString(0);
      // callbackContext.success("bar shahaf");
      
-      final PluginResult result = new PluginResult(PluginResult.Status.OK, ("lolll");
+      final PluginResult result = new PluginResult(PluginResult.Status.OK, ("lolll"));
       callbackContext.sendPluginResult(result);
       
       
