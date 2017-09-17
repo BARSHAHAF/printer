@@ -240,7 +240,7 @@ public class BarPrinter extends CordovaPlugin {
      
       String got = "bbbbb";//  PrintPdf2(phrase );
       
-      PrintPdf2("http://5.100.254.203/~promo/test.pdf" );
+      PrintPdf2(phrase);
       
       /*
         cordova.getActivity().runOnUiThread( new Runnable() {
