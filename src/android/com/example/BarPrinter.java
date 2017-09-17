@@ -26,7 +26,17 @@ public class BarPrinter extends CordovaPlugin {
   }
 
   public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
-    if(action.equals("echo")) {
+    if(action.equals("PrintPdf")) {
+      String phrase = args.getString(0);
+     // callbackContext.success("bar shahaf");
+     
+      final PluginResult result = new PluginResult(PluginResult.Status.OK, ("PrintPdf"+phrase));
+      callbackContext.sendPluginResult(result);
+      
+      
+      // Echo back the first argument
+      Log.d(TAG, phrase);
+    } else if(action.equals("echo")) {
       String phrase = args.getString(0);
      // callbackContext.success("bar shahaf");
      
@@ -36,7 +46,7 @@ public class BarPrinter extends CordovaPlugin {
       
       // Echo back the first argument
       Log.d(TAG, phrase);
-    } else if(action.equals("getDate")) {
+    } elseif(action.equals("getDate")) {
       // An example of returning data back to the web layer
      // return new PluginResult("ok", "result");
       
