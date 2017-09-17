@@ -4,7 +4,7 @@ var exec = require('cordova/exec');
 var PLUGIN_NAME = 'BarPrinter';
 
 var BarPrinter = {
-  echo: function(phrase, cd,ecb) {
+  echo: function(phrase, cb,ecb) {
     exec(cb, ecb, PLUGIN_NAME, 'echo', [phrase]);
   },
   getDate: function(cb) {
