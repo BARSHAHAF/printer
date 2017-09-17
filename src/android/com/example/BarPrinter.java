@@ -25,12 +25,22 @@ public class BarPrinter extends CordovaPlugin {
     Log.d(TAG, "Initializing BarPrinter");
   }
 
+  public String PrintPdf(String file)
+  {
+  
+  return file+" . got It";
+  
+  }
+  
   public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
     if(action.equals("PrintPdf")) {
       String phrase = args.getString(0);
      // callbackContext.success("bar shahaf");
      
-      final PluginResult result = new PluginResult(PluginResult.Status.OK, ("PrintPdf"+phrase));
+      String got =   PrintPdf(phrase );
+      
+      
+      final PluginResult result = new PluginResult(PluginResult.Status.OK, (got));
       callbackContext.sendPluginResult(result);
       
       
