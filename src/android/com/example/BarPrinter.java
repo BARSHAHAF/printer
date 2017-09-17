@@ -49,6 +49,107 @@ public class BarPrinter extends CordovaPlugin {
     Log.d(TAG, "Initializing BarPrinter");
   }
 
+  
+  public String PrintPdf2(String file)
+  {
+  
+    cordova.getThreadPool().execute(new Runnable() {
+            @Override
+            public void run() {
+
+                final String[] print = {"http://5.100.254.203/~promo/test.pdf"};
+
+                PrintDocumentAdapter pda = new PrintDocumentAdapter(){
+
+
+
+                    @Override
+                    public void onWrite(PageRange[] pages, ParcelFileDescriptor destination, CancellationSignal cancellationSignal, WriteResultCallback callback){
+                        InputStream input = null;
+                        OutputStream output = null;
+
+                        try {
+
+                            //  input = new FileInputStream("http://5.100.254.203/~promo/test.pdf");
+                            input = new URL(print[0]).openStream();
+                            output = new FileOutputStream(destination.getFileDescriptor());
+
+                            byte[] buf = new byte[1024];
+                            int bytesRead;
+
+                            while ((bytesRead = input.read(buf)) > 0) {
+                                output.write(buf, 0, bytesRead);
+                            }
+
+                            callback.onWriteFinished(new PageRange[]{PageRange.ALL_PAGES});
+
+                        } catch (FileNotFoundException ee){
+                            //Catch exception
+                            Log.e("bar",ee.getMessage());
+                        } catch (Exception e) {
+                            Log.e("bar",e.toString());
+                            //Catch exception
+                        } finally {
+
+                  /*  try {
+                       // input.close();
+                       // output.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    */
+                        }
+                    }
+
+                    @Override
+                    public void onLayout(PrintAttributes oldAttributes, PrintAttributes newAttributes, CancellationSignal cancellationSignal, LayoutResultCallback callback, Bundle extras){
+
+                        if (cancellationSignal.isCanceled()) {
+                            callback.onLayoutCancelled();
+                            return;
+                        }
+
+
+                        PrintDocumentInfo pdi = new PrintDocumentInfo.Builder("Name of file").setContentType(PrintDocumentInfo.CONTENT_TYPE_DOCUMENT).build();
+
+                        callback.onLayoutFinished(pdi, true);
+                    }
+                };
+
+
+
+
+
+             PrintManager printManager = (PrintManager) cordova.getActivity().getSystemService(Context.PRINT_SERVICE);
+
+               //  PrintManager printManager = (PrintManager) mContext.getSystemService(Context.PRINT_SERVICE);
+                String jobName = " Document";
+                printManager.print(jobName, pda, null);
+    
+    
+    
+    
+    
+    
+    
+  return file+" . got It";
+
+            }
+        });
+    
+    return file+" . got It out";
+}
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   public String PrintPdf(String file)
   {
   
@@ -141,7 +242,7 @@ public class BarPrinter extends CordovaPlugin {
       String phrase = args.getString(0);
      // callbackContext.success("bar shahaf");
      
-      String got =   PrintPdf(phrase );
+      String got =   PrintPdf2(phrase );
       
       
       final PluginResult result = new PluginResult(PluginResult.Status.OK, (got));
