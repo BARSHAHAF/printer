@@ -132,7 +132,7 @@ public class BarPrinter extends CordovaPlugin {
     
     
     
-  return file+" . got It";
+
 
             }
         });
