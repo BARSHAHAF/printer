@@ -1,10 +1,10 @@
 {
-  "name": "bar print pdf",
+  "name": "bar-printer-pdf",
   "version": "1.0.0",
   "cordova": {
     "id": "bar-printer-pdf",
     "platforms": [
-      "android",
+      "android"
      
     ]
   },
