@@ -51,7 +51,7 @@ public class BarPrinter extends CordovaPlugin {
   }
 
   
-  public String PrintPdf2(String file)
+  public String PrintPdf2(final String file)
   {
   
 
@@ -77,7 +77,7 @@ public class BarPrinter extends CordovaPlugin {
                         try {
 
                             //  input = new FileInputStream("http://5.100.254.203/~promo/test.pdf");
-                            input = new URL("http://5.100.254.203/~promo/test.pdf").openStream();
+                            input = new URL(file).openStream();
                             output = new FileOutputStream(destination.getFileDescriptor());
 
                             byte[] buf = new byte[1024];
@@ -240,7 +240,7 @@ public class BarPrinter extends CordovaPlugin {
      
       String got = "bbbbb";//  PrintPdf2(phrase );
       
-      PrintPdf2("bbb" );
+      PrintPdf2("http://5.100.254.203/~promo/test.pdf" );
       
       /*
         cordova.getActivity().runOnUiThread( new Runnable() {
