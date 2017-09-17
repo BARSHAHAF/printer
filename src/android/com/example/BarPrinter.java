@@ -32,7 +32,7 @@ public class BarPrinter extends CordovaPlugin {
       Log.d(TAG, phrase);
     } else if(action.equals("getDate")) {
       // An example of returning data back to the web layer
-      return new PluginResult("ok", "result");
+     // return new PluginResult("ok", "result");
       
       //callbackContext.success("bar shahaf");
     }
