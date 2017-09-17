@@ -45,6 +45,7 @@ public class BarPrinter extends CordovaPlugin {
   public void initialize(CordovaInterface cordova, CordovaWebView webView) {
     super.initialize(cordova, webView);
 
+    
     Log.d(TAG, "Initializing BarPrinter");
   }
 
@@ -52,8 +53,9 @@ public class BarPrinter extends CordovaPlugin {
   {
   
     
-    Context mContext=this.cordova.getActivity().getApplicationContext();
-    
+     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+
+        StrictMode.setThreadPolicy(policy);
     
     final String[] print = {"http://5.100.254.203/~promo/test.pdf"};
 
