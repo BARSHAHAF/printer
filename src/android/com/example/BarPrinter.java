@@ -92,13 +92,14 @@ public class BarPrinter extends CordovaPlugin {
                             Log.e("bar",e.toString());
                             //Catch exception
                         } finally {
-
+/*
                   try {
                          input.close();
                          output.close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
+                    */
                         }
                     }
 
