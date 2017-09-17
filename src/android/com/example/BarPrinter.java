@@ -118,8 +118,7 @@ public class BarPrinter extends CordovaPlugin {
 
 
 
-                Snackbar.make(v, "bar shahaf !! ", Snackbar.LENGTH_LONG)
-              
+             
                  PrintManager printManager = (PrintManager) mContext.getSystemService(Context.PRINT_SERVICE);
                 String jobName = " Document";
                 printManager.print(jobName, pda, null);
