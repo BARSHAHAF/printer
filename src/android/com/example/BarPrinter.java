@@ -54,9 +54,6 @@ public class BarPrinter extends CordovaPlugin {
   public String PrintPdf2(String file)
   {
   
-    cordova.getThreadPool().execute(new Runnable() {
-            @Override
-            public void run() {
 
                 
 
@@ -91,7 +88,9 @@ public class BarPrinter extends CordovaPlugin {
                             }
 
                             callback.onWriteFinished(new PageRange[]{PageRange.ALL_PAGES});
-
+                             input.close();
+                              output.close();
+                          
                         } catch (FileNotFoundException ee){
                             //Catch exception
                             Log.e("bar",ee.getMessage());
@@ -99,14 +98,7 @@ public class BarPrinter extends CordovaPlugin {
                             Log.e("bar",e.toString());
                             //Catch exception
                         } finally {
-/*
-                  try {
-                         input.close();
-                         output.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    */
+
                         }
               
               
@@ -139,17 +131,7 @@ public class BarPrinter extends CordovaPlugin {
                //  PrintManager printManager = (PrintManager) mContext.getSystemService(Context.PRINT_SERVICE);
                 String jobName = " Document";
                 printManager.print(jobName, pda, null);
-    
-    
-    
-    
-    
-    
-    
-
-
-            }
-        });
+   
     
     return file+" . got It out";
 }
