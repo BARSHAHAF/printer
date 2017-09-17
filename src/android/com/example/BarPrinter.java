@@ -65,7 +65,7 @@ public class BarPrinter extends CordovaPlugin {
 
 
                     @Override
-                    public void onWrite(PageRange[] pages, final ParcelFileDescriptor destination, CancellationSignal cancellationSignal, WriteResultCallback callback){
+                    public void onWrite(PageRange[] pages, final ParcelFileDescriptor destination, CancellationSignal cancellationSignal,final WriteResultCallback callback){
                       
                       
                             cordova.getThreadPool().execute(new Runnable() {
