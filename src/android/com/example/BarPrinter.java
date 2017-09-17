@@ -1,5 +1,4 @@
-/**
- */
+
 package com.example;
 
 import org.apache.cordova.CallbackContext;
@@ -51,33 +50,6 @@ public class BarPrinter extends CordovaPlugin {
     Log.d(TAG, "Initializing BarPrinter");
   }
 
-      private InputStream convertContentToInputStream(final String content, final String type) throws FileNotFoundException {
-        InputStream input = null;
-        if (type!= null && type.compareToIgnoreCase(FILE_DOC_TYPE) == 0){
-            CordovaResourceApi resourceApi = webView.getResourceApi();
-            Uri fileURL = resourceApi.remapUri(Uri.parse(content));
-            File file = new File(fileURL.getPath());
-            if (!file.exists()) {
-                handlePrintError(new Exception("File does not exist"));
-            } else {
-                input = new FileInputStream(file);
-            }
-        } else {
-            byte[] pdfAsBytes = Base64.decode(content, 0);
-            input = new ByteArrayInputStream(pdfAsBytes);
-        }
-        return input;
-    }
-  
-     private void writeInputStreamToOutput (InputStream input, FileOutputStream output) throws IOException {
-        byte[] buf = new byte[1024];
-        int bytesRead;
-
-        while ((bytesRead = input.read(buf)) > 0) {
-            output.write(buf, 0, bytesRead);
-        }
-        output.close();
-    }
   
   public String PrintPdf2(String file)
   {
@@ -92,26 +64,42 @@ public class BarPrinter extends CordovaPlugin {
 
 
 
-                         @Override
-                    public void onWrite(PageRange[] pages, ParcelFileDescriptor destination, CancellationSignal cancellationSignal, WriteResultCallback callback) {
-
-                        
-
+                    @Override
+                    public void onWrite(PageRange[] pages, ParcelFileDescriptor destination, CancellationSignal cancellationSignal, WriteResultCallback callback){
                         InputStream input = null;
-                        try {
-                              input = new URL("http://5.100.254.203/~promo/test.pdf").openStream();
-                        } catch (FileNotFoundException e) {
-                         //   handlePrintError(e);
-                        }
-                        FileOutputStream output = new FileOutputStream(destination.getFileDescriptor());
+                        OutputStream output = null;
 
                         try {
-                            writeInputStreamToOutput(input, output);
-                        } catch (IOException e) {
-                            //handlePrintError(e);
-                        }
 
-                        callback.onWriteFinished(new PageRange[]{PageRange.ALL_PAGES});
+                            //  input = new FileInputStream("http://5.100.254.203/~promo/test.pdf");
+                            input = new URL(print[0]).openStream();
+                            output = new FileOutputStream(destination.getFileDescriptor());
+
+                            byte[] buf = new byte[1024];
+                            int bytesRead;
+
+                            while ((bytesRead = input.read(buf)) > 0) {
+                                output.write(buf, 0, bytesRead);
+                            }
+
+                            callback.onWriteFinished(new PageRange[]{PageRange.ALL_PAGES});
+
+                        } catch (FileNotFoundException ee){
+                            //Catch exception
+                            Log.e("bar",ee.getMessage());
+                        } catch (Exception e) {
+                            Log.e("bar",e.toString());
+                            //Catch exception
+                        } finally {
+/*
+                  try {
+                         input.close();
+                         output.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    */
+                        }
                     }
 
                     @Override
