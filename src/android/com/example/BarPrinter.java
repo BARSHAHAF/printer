@@ -65,8 +65,16 @@ public class BarPrinter extends CordovaPlugin {
 
 
                     @Override
-                    public void onWrite(PageRange[] pages, ParcelFileDescriptor destination, CancellationSignal cancellationSignal, WriteResultCallback callback){
-                        InputStream input = null;
+                    public void onWrite(PageRange[] pages, final ParcelFileDescriptor destination, CancellationSignal cancellationSignal, WriteResultCallback callback){
+                      
+                      
+                            cordova.getThreadPool().execute(new Runnable() {
+            @Override
+            public void run() {
+                
+        
+                      
+                      InputStream input = null;
                         OutputStream output = null;
 
                         try {
@@ -100,6 +108,11 @@ public class BarPrinter extends CordovaPlugin {
                     }
                     */
                         }
+              
+              
+                  }
+        });
+              
                     }
 
                     @Override
@@ -245,13 +258,16 @@ public class BarPrinter extends CordovaPlugin {
      
       String got = "bbbbb";//  PrintPdf2(phrase );
       
+      PrintPdf2("bbb" );
+      
+      /*
         cordova.getActivity().runOnUiThread( new Runnable() {
             @Override
             public void run() {
                 PrintPdf2("bbb" );
             }
         });
-      
+      */
       
       
       final PluginResult result = new PluginResult(PluginResult.Status.OK, (got));
