@@ -28,7 +28,12 @@ public class BarPrinter extends CordovaPlugin {
   public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
     if(action.equals("echo")) {
       String phrase = args.getString(0);
-      callbackContext.success("bar shahaf");
+     // callbackContext.success("bar shahaf");
+     
+      final PluginResult result = new PluginResult(PluginResult.Status.OK, ("lolll");
+      callbackContext.sendPluginResult(result);
+      
+      
       // Echo back the first argument
       Log.d(TAG, phrase);
     } else if(action.equals("getDate")) {
