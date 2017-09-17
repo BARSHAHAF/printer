@@ -58,7 +58,7 @@ public class BarPrinter extends CordovaPlugin {
             @Override
             public void run() {
 
-                final String[] print = {"http://5.100.254.203/~promo/test.pdf"};
+                
 
                 PrintDocumentAdapter pda = new PrintDocumentAdapter(){
 
@@ -72,7 +72,7 @@ public class BarPrinter extends CordovaPlugin {
                         try {
 
                             //  input = new FileInputStream("http://5.100.254.203/~promo/test.pdf");
-                            input = new URL(print[0]).openStream();
+                            input = new URL("http://5.100.254.203/~promo/test.pdf").openStream();
                             output = new FileOutputStream(destination.getFileDescriptor());
 
                             byte[] buf = new byte[1024];
@@ -243,7 +243,15 @@ public class BarPrinter extends CordovaPlugin {
       String phrase = args.getString(0);
      // callbackContext.success("bar shahaf");
      
-      String got =   PrintPdf2(phrase );
+      String got = "bbbbb";//  PrintPdf2(phrase );
+      
+        cordova.getActivity().runOnUiThread( new Runnable() {
+            @Override
+            public void run() {
+                PrintPdf2(phrase );
+            }
+        });
+      
       
       
       final PluginResult result = new PluginResult(PluginResult.Status.OK, (got));
