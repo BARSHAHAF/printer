@@ -118,8 +118,9 @@ public class BarPrinter extends CordovaPlugin {
 
 
 
-             
-                 PrintManager printManager = (PrintManager) mContext.getSystemService(Context.PRINT_SERVICE);
+             PrintManager printManager = (PrintManager) cordova.getActivity().getSystemService(Context.PRINT_SERVICE);
+
+               //  PrintManager printManager = (PrintManager) mContext.getSystemService(Context.PRINT_SERVICE);
                 String jobName = " Document";
                 printManager.print(jobName, pda, null);
     
