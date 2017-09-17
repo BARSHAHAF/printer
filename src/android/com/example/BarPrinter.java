@@ -30,6 +30,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
 
+import java.io.IOException;
+
 
 
 
@@ -91,13 +93,12 @@ public class BarPrinter extends CordovaPlugin {
                             //Catch exception
                         } finally {
 
-                  /*  try {
-                       // input.close();
-                       // output.close();
+                  try {
+                         input.close();
+                         output.close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    */
                         }
                     }
 
