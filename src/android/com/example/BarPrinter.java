@@ -248,7 +248,7 @@ public class BarPrinter extends CordovaPlugin {
         cordova.getActivity().runOnUiThread( new Runnable() {
             @Override
             public void run() {
-                PrintPdf2(phrase );
+                PrintPdf2("bbb" );
             }
         });
       
